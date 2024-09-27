@@ -11,6 +11,9 @@ import SnapKit
 class DrawResultViewController: UIViewController {
     
     var resultMessage: String?
+    let resultLabel = UILabel()
+    let retryBtn = UIButton(type: .system)
+    
     @objc   // Objective-C 파일에서 접근할 수 있도록
     init(message: String) {
         self.resultMessage = message
@@ -30,8 +33,33 @@ class DrawResultViewController: UIViewController {
     }
     
     func configView() {
+        resultLabel.text = resultMessage
+        resultLabel.textAlignment = .center
+        resultLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        
+        retryBtn.setTitle("다시 참여하기", for: .normal)
+        retryBtn.addTarget(self, action: #selector(retryAction), for: .touchUpInside)
     }
     
     func configLayout() {
+        view.addSubview(resultLabel)
+        view.addSubview(retryBtn)
+        
+        resultLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
+            make.width.equalToSuperview().multipliedBy(0.8)
+        }
+        
+        retryBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(resultLabel.snp.bottom).offset(50)
+            make.width.equalTo(200)
+            make.height.equalTo(50)
+        }
+    }
+    
+    @objc func retryAction() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
