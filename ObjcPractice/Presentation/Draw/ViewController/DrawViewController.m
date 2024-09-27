@@ -45,5 +45,19 @@
 }
 
 - (void)checkDraw {
+    // 현재 시간 가져오기
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HHmmss"];
+    NSString *currentTime = [formatter stringFromDate:[NSDate date]];
+    
+    // "7"이 포함되어 있는지 확인
+    NSLog(@"%@", currentTime);
+    if ([currentTime containsString:@"7"]) {
+        [self goToResultWithMessage:@"당첨을 축하합니다!"];
+    } else {
+        [self goToResultWithMessage:@"꽝 ㅋㅋ"];
+    }
+}
+- (void)goToResultWithMessage:(NSString *)message {
 }
 @end
