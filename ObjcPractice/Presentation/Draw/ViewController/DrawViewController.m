@@ -58,6 +58,14 @@
         [self goToResultWithMessage:@"꽝 ㅋㅋ"];
     }
 }
+
+// Swift로 구현된 DrawResultVC로 이동
 - (void)goToResultWithMessage:(NSString *)message {
+    // Swift로 구성된 DrawResultVC 인스턴스 생성
+    DrawResultViewController *resultVC = [[DrawResultViewController alloc] initWithMessage:message];
+    
+    // 화면 전환
+    [self presentViewController:resultVC animated:YES completion:nil];
 }
+
 @end
